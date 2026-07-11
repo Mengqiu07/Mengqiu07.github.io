@@ -13,20 +13,13 @@
 
 <body class="dark">
   <div class="top-bar">
-    <div class="lang-switcher">
-      <span class="lang-label">LANG</span>
-      <button class="lang-btn" data-lang="en" title="English">EN</button>
-      <button class="lang-btn active" data-lang="zh-CN" title="简体中文">简</button>
-      <button class="lang-btn" data-lang="zh-TW" title="繁體中文">繁</button>
-      <button class="lang-btn" data-lang="ja" title="日本語">日</button>
-    </div>
     <div class="theme-switcher">
-      <span class="theme-label">THEME</span>
+      <span class="theme-label">主题</span>
       <button class="theme-btn active" data-theme="dark" title="Cyber Dark Mode">
-        <span class="theme-icon">◉</span> BLACK
+        <span class="theme-icon">◉</span> 暗黑
       </button>
       <button class="theme-btn" data-theme="light" title="Clean Light Mode">
-        <span class="theme-icon">◎</span> WHITE
+        <span class="theme-icon">◎</span> 亮白
       </button>
     </div>
   </div>
@@ -51,8 +44,40 @@
             </tbody>
           </table>
 
-          <div id="article-list" style="padding:0 20px;">
-            <p style="text-align:center;color:rgba(0,255,255,0.5);">加载中...</p>
+          <div style="padding:0 20px;">
+
+            <div class="article-card">
+              <a href="2026-07-10-01/" class="article-card-link">
+                <div class="article-card-date">2026-07-10</div>
+                <div class="article-card-title">李羿嵘在上海交通大学夏令营获奖！</div>
+                <div class="article-card-summary">在上海交通大学夏令营中取得优异成绩并获奖。</div>
+              </a>
+            </div>
+
+            <div class="article-card">
+              <a href="2026-07-06-01/" class="article-card-link">
+                <div class="article-card-date">2026-07-06</div>
+                <div class="article-card-title">李羿嵘参加上海交通大学夏令营</div>
+                <div class="article-card-summary">赴上海交通大学参加人工智能暑期挑战营。</div>
+              </a>
+            </div>
+
+            <div class="article-card">
+              <a href="2026-07-04-01/" class="article-card-link">
+                <div class="article-card-date">2026-07-04</div>
+                <div class="article-card-title">李羿嵘大同杯比赛二等奖！</div>
+                <div class="article-card-summary">荣获2026年黄浦"大同杯"中小学生信息学交流活动（高中组）二等奖。</div>
+              </a>
+            </div>
+
+            <div class="article-card">
+              <a href="2026-05-31-01/" class="article-card-link">
+                <div class="article-card-date">2026-05-31</div>
+                <div class="article-card-title">参加黄浦大同杯比赛</div>
+                <div class="article-card-summary">赴上海市大同中学参加2026年黄浦"大同杯"中小学生信息学交流活动。</div>
+              </a>
+            </div>
+
           </div>
 
         </td>
@@ -63,7 +88,6 @@
   <canvas id="particles"></canvas>
 
   <script>
-    // ========== PARTICLE SYSTEM ==========
     (function(){
       var c = document.getElementById('particles');
       c.style.cssText = 'position:fixed;top:0;left:0;z-index:0;pointer-events:none;';
@@ -128,7 +152,6 @@
   </script>
 
   <script>
-    // ========== LANGUAGE / THEME ==========
     (function() {
       var saved = localStorage.getItem('theme') || 'dark';
       document.body.className = saved;
@@ -142,72 +165,6 @@
           btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-theme') === theme); });
         });
       });
-    })();
-  </script>
-
-  <script>
-    // ========== LOAD ARTICLES ==========
-    (function() {
-      var articleDirs = [
-        '2026-07-10-01',
-        '2026-07-06-01',
-        '2026-07-04-01',
-        '2026-05-31-01'
-      ];
-
-      var container = document.getElementById('article-list');
-      var loaded = 0;
-      var articles = [];
-
-      articleDirs.forEach(function(dir) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', dir + '/info.json', true);
-        xhr.onload = function() {
-          if (xhr.status === 200) {
-            try {
-              var info = JSON.parse(xhr.responseText);
-              info.dir = dir;
-              articles.push(info);
-            } catch(e) {}
-          }
-          loaded++;
-          if (loaded === articleDirs.length) {
-            renderArticles();
-          }
-        };
-        xhr.onerror = function() {
-          loaded++;
-          if (loaded === articleDirs.length) {
-            renderArticles();
-          }
-        };
-        xhr.send();
-      });
-
-      function renderArticles() {
-        if (articles.length === 0) {
-          container.innerHTML = '<p style="text-align:center;color:rgba(0,255,255,0.4);">暂无文章</p>';
-          return;
-        }
-
-        // 按日期从晚到早排序
-        articles.sort(function(a, b) {
-          return b.date.localeCompare(a.date);
-        });
-
-        var html = '';
-        articles.forEach(function(article) {
-          html += '<div class="article-card">';
-          html += '<a href="' + article.dir + '/" class="article-card-link">';
-          html += '<div class="article-card-date">' + article.date + '</div>';
-          html += '<div class="article-card-title">' + article.title + '</div>';
-          html += '<div class="article-card-summary">' + (article.summary || '') + '</div>';
-          html += '</a>';
-          html += '</div>';
-        });
-
-        container.innerHTML = html;
-      }
     })();
   </script>
 </body>
