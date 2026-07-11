@@ -49,8 +49,14 @@
                 <td style="padding:20px;width:100%;vertical-align:middle">
                   <heading>李羿嵘参加上海交通大学夏令营</heading>
                   <p style="color:rgba(0,255,255,0.5);font-size:13px;margin-top:8px;">2026-07-06</p>
-                  <div class="article-content" id="article-content">
-                    <p style="text-align:center;color:rgba(0,255,255,0.5);">加载中...</p>
+                  <div class="article-content">
+                    <p>标题：李羿嵘参加上海交通大学夏令营</p>
+                    <p>日期：2026.07.06</p>
+                    <p>今天（2026年7月6日），李羿嵘与上海市向明中学、上海市大同中学的其他学生前往上海市交通大学（闵行校区）参加了 为期五天的2026上海交通大学人工智能研究院走进人工智能暑期挑战营。</p>
+                    <p>在此次学习交流过程中，李羿嵘将抓住这一次宝贵的与高校交流机会，努力提升自我。</p>
+                    <p>以下为几张今日照片：</p>
+                    <p style="text-align:center;"><img src="图片1.png" alt="照片1" style="max-width:100%;height:auto;border-radius:8px;margin:10px 0;"></p>
+                    <p style="text-align:center;"><img src="图片2.png" alt="照片2" style="max-width:100%;height:auto;border-radius:8px;margin:10px 0;"></p>
                   </div>
                   <p style="text-align:center;margin-top:30px;">
                     <a href="../index.html" class="btn-xmprogramming">返回文章列表</a>
@@ -148,22 +154,5 @@
     })();
   </script>
 
-  <script>
-    (function() {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'content.html', true);
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          document.getElementById('article-content').innerHTML = xhr.responseText;
-        } else {
-          document.getElementById('article-content').innerHTML = '<p style="text-align:center;color:rgba(0,255,255,0.4);">文章内容加载失败</p>';
-        }
-      };
-      xhr.onerror = function() {
-        document.getElementById('article-content').innerHTML = '<p style="text-align:center;color:rgba(0,255,255,0.4);">文章内容加载失败</p>';
-      };
-      xhr.send();
-    })();
-  </script>
 </body>
 </html>
