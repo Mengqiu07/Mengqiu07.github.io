@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>参加黄浦区大同杯比赛 | 李羿嵘</title>
+  <meta name="author" content="Xiaoming Li">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><defs><linearGradient id=%22g%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 stop-color=%22%2300ffff%22/><stop offset=%22100%25%22 stop-color=%22%23ff00ff%22/></linearGradient></defs><text y=%22.9em%22 font-size=%2290%22 fill=%22url(%23g)%22>⚡</text></svg>">
+</head>
+
+<body class="dark">
+  <div class="top-bar">
+    <div class="lang-switcher">
+      <span class="lang-label">LANG</span>
+      <button class="lang-btn" data-lang="en" title="English">EN</button>
+      <button class="lang-btn active" data-lang="zh-CN" title="简体中文">简</button>
+      <button class="lang-btn" data-lang="zh-TW" title="繁體中文">繁</button>
+      <button class="lang-btn" data-lang="ja" title="日本語">日</button>
+    </div>
+    <div class="theme-switcher">
+      <span class="theme-label">THEME</span>
+      <button class="theme-btn active" data-theme="dark" title="Cyber Dark Mode">
+        <span class="theme-icon">◉</span> BLACK
+      </button>
+      <button class="theme-btn" data-theme="light" title="Clean Light Mode">
+        <span class="theme-icon">◎</span> WHITE
+      </button>
+    </div>
+  </div>
+
+  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <tbody>
+      <tr style="padding:0px">
+        <td style="padding:0px">
+
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <tbody>
+              <tr>
+                <td style="padding:20px;width:100%;vertical-align:middle">
+                  <p class="navbar" style="text-align:right;margin-top:0;margin-bottom:10px;">
+                    <a href="../../index.html" class="nav-link">首页</a>
+                    <span class="nav-sep">|</span>
+                    <a href="../index.html" class="nav-link">文章</a>
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <tbody>
+              <tr>
+                <td style="padding:20px;width:100%;vertical-align:middle">
+                  <heading>参加黄浦区大同杯比赛</heading>
+                  <p style="color:rgba(0,255,255,0.5);font-size:13px;margin-top:8px;">2026-05-31</p>
+                  <div class="article-content" id="article-content">
+                    <p style="text-align:center;color:rgba(0,255,255,0.5);">加载中...</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <canvas id="particles"></canvas>
+
+  <script>
+    (function(){
+      var c = document.getElementById('particles');
+      c.style.cssText = 'position:fixed;top:0;left:0;z-index:0;pointer-events:none;';
+      var ctx = c.getContext('2d');
+      var w, h, particles = [];
+      function resize() {
+        w = c.width = window.innerWidth;
+        h = c.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      for (var i = 0; i < 60; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          r: Math.random() * 1.5 + 0.5,
+          a: Math.random() * 0.5 + 0.2
+        });
+      }
+      function getColors() {
+        if (document.body.classList.contains('light')) {
+          return { r: 34, g: 85, b: 204, alphaMul: 0.7 };
+        }
+        return { r: 0, g: 255, b: 255, alphaMul: 1 };
+      }
+      function draw() {
+        var col = getColors();
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = w;
+          if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h;
+          if (p.y > h) p.y = 0;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(' + col.r + ',' + col.g + ',' + col.b + ',' + (p.a * col.alphaMul) + ')';
+          ctx.fill();
+          for (var j = i + 1; j < particles.length; j++) {
+            var p2 = particles[j];
+            var dx = p.x - p2.x;
+            var dy = p.y - p2.y;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 120) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = 'rgba(' + col.r + ',' + col.g + ',' + col.b + ',' + (0.12 * (1 - dist / 120) * col.alphaMul) + ')';
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+  </script>
+
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme') || 'dark';
+      document.body.className = saved;
+      var btns = document.querySelectorAll('.theme-btn');
+      btns.forEach(function(btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-theme') === saved);
+        btn.addEventListener('click', function() {
+          var theme = this.getAttribute('data-theme');
+          document.body.className = theme;
+          localStorage.setItem('theme', theme);
+          btns.forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-theme') === theme); });
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    (function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'content.html', true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          document.getElementById('article-content').innerHTML = xhr.responseText;
+        } else {
+          document.getElementById('article-content').innerHTML = '<p style="text-align:center;color:rgba(0,255,255,0.4);">文章内容加载失败</p>';
+        }
+      };
+      xhr.onerror = function() {
+        document.getElementById('article-content').innerHTML = '<p style="text-align:center;color:rgba(0,255,255,0.4);">文章内容加载失败</p>';
+      };
+      xhr.send();
+    })();
+  </script>
+</body>
+</html>
